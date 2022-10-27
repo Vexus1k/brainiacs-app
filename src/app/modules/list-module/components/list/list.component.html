@@ -4,7 +4,7 @@
     <h3 class="mb-0">List of smart guys</h3>
   </div>
 
-  <button type="button" class="btn btn-primary btn-sm custom_button border-0"><fa-icon [icon]="faPlus" class="pe-2"></fa-icon>Add brainiac</button>
+  <button type="button" class="btn btn-primary btn-sm custom_button border-0" (click)="openModal(addModalContent)"><fa-icon [icon]="faPlus" class="pe-2"></fa-icon>Add brainiac</button>
 </div>
 <div class="col-12"></div>
 <table class="table">
@@ -18,8 +18,41 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let smartPerson of smartPeopleList" app-list-record [smartPerson]="smartPerson"
-        (removePersonEvent)="removePerson($event)" (editPersonEvent)="editPerson($event)">
+    <tr *ngFor="let smartUser of smartGuysList" app-list-record [smartUser]="smartUser"
+        (removeUserEvent)="removeUser($event)" (editUserEvent)="editUser($event)">
     </tr>
   </tbody>
 </table>
+
+<ng-template #addModalContent let-modal>
+  <div class="modal-header border-0">
+    <h3 class="modal-title fs-3" id="addAcceptModalLabel">Add new brainiac</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+  <div class="modal-body border-0 pb-5 p-3">
+    <form [formGroup]="userFormGroup">
+      <div class="d-flex justify-content-between pb-4">
+        <div class="form-group col-6 pe-3">
+          <label class="control-label pb-2 fs-5" for="firstName">First Name</label>
+          <input type="text" class="form-control fs-5" id="firstName" formControlName="firstName" autocomplete="off"
+                 placeholder="Type in the first name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+        <div class="form-group col-6 ps-3">
+          <label class="control-label pb-2 fs-5" for="lastName">Last Name</label>
+          <input type="text" class="form-control fs-5" id="lastName" autocomplete="off"
+                 formControlName="lastName" placeholder="Type in the last name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+      </div>
+      <div class="form-group col-12">
+        <label class="control-label pb-2 fs-5" for="email">E-mail</label>
+        <input required="required" type="text" class="form-control fs-5" id="email" autocomplete="off"
+               formControlName="email" placeholder="Type in the email" aria-label="Username" aria-describedby="basic-addon1">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer border-0">
+    <button type="button" role="button" class="btn custom_button_light text-white" data-bs-dismiss="modal" (click)="modal.dismiss()">Close</button>
+    <button type="button" role="button" class="btn custom_button_dark text-white" data-bs-dismiss="modal"
+            (click)="addUser()" [disabled]="!userFormGroup.valid">Add</button>
+  </div>
+</ng-template>

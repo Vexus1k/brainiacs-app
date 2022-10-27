@@ -14,5 +14,24 @@ table {
     }
   }
 }
+.fs-5 {
+  font-size: 18px!important;
+}
+.fs-3 {
+  font-size: 1.6rem!important
+}
+.btn-close {
+  font-size: 12px!important;
+}
+.custom_button_light {
+  background: #b15b5b;
+}
+.custom_button_dark {
+  background: #44001a;
+}
+.control-label:after{
+  content:" *";
+  color:red;
+}
 
 

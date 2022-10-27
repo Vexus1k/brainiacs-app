@@ -1,29 +1,29 @@
 <td class="pe-4 pt-3 pb-3">
   <div class="d-flex align-items-center">
-    <p class="ps-2 pe-4 me-2 m-0">{{ smartPerson.id }}</p>
-    <img class="" [src]="smartPerson.avatar">
+    <p class="ps-2 pe-4 me-2 m-0">{{ smartUser.id }}</p>
+    <img class="" [src]="smartUser.avatar">
   </div>
 </td>
 <td class="ps-2 pt-3 pb-3">
   <div class="d-flex align-items-center">
-    <p  class="m-0">{{ smartPerson.first_name }}</p>
+    <p  class="m-0">{{ smartUser.first_name }}</p>
   </div>
 </td>
 <td class="ps-2 pt-3 pb-3">
   <div class="d-flex align-items-center">
-    <p class="m-0">{{ smartPerson.last_name }}</p>
+    <p class="m-0">{{ smartUser.last_name }}</p>
   </div>
 </td>
 <td class="ps-2 pt-3 pb-3">
   <div class="d-flex align-items-center">
-    <p class="m-0">{{ smartPerson.email }}</p>
+    <p class="m-0">{{ smartUser.email }}</p>
   </div>
 </td>
 <td class="ps-2 pe-0 pt-3 pb-3">
   <div class="d-flex align-items-center justify-content-end me-3">
     <fa-icon class="pe-3 fs-5" role="button" data-bs-toggle="modal" data-bs-target="#editAcceptModal"
-             [size]="'lg'" [icon]="faPenToSquare" (click)="setFormValue(smartPerson.first_name,
-      smartPerson.last_name, smartPerson.email); openModal(editModalContent)"></fa-icon>
+             [size]="'lg'" [icon]="faPenToSquare" (click)="setFormValue(smartUser.first_name,
+      smartUser.last_name, smartUser.email); openModal(editModalContent)"></fa-icon>
     <fa-icon class="fs-5" role="button" data-bs-toggle="modal" data-bs-target="#removeAcceptModal"
              [size]="'lg'" [icon]="faTrashCan" (click)="openModal(removeModalContent)"></fa-icon>
   </div>
@@ -32,23 +32,23 @@
 <ng-template #removeModalContent let-modal>
     <div class="modal-header">
       <h5 class="modal-title" id="removeAcceptModalLabel">Delete Person</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
     </div>
     <div class="modal-body">
       Are you sure you want to delete this person from this list ?
     </div>
     <div class="modal-footer">
       <button type="button" role="button" class="btn custom_button_light text-white" data-bs-dismiss="modal"
-              (click)="modal.dismiss('close button click')">Close</button>
+              (click)="modal.dismiss()">Close</button>
       <button type="button" role="button" class="btn custom_button_dark text-white" data-bs-dismiss="modal"
-              (click)="removePerson(smartPerson.id!)">Delete</button>
+              (click)="removeUser(smartUser.id!)">Delete</button>
     </div>
 </ng-template>
 
 <ng-template #editModalContent let-modal>
   <div class="modal-header border-0">
-    <h3 class="modal-title fs-3" id="editAcceptModalLabel">Add new brainiac</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss('cross click')"></button>
+    <h3 class="modal-title fs-3" id="editAcceptModalLabel">Edit brainiac</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modal.dismiss()"></button>
   </div>
   <div class="modal-body border-0 pb-5 p-3">
     <form [formGroup]="userFormGroup">
@@ -56,25 +56,25 @@
         <div class="form-group col-6 pe-3">
           <label class="control-label pb-2 fs-5" for="firstName">First Name</label>
           <input type="text" class="form-control fs-5" id="firstName" formControlName="firstName" autocomplete="off"
-                 placeholder="Type in the first name" aria-label="Username" aria-describedby="basic-addon1" [value]="smartPerson.first_name">
+                 placeholder="Type in the first name" aria-label="Username" aria-describedby="basic-addon1">
         </div>
         <div class="form-group col-6 ps-3">
           <label class="control-label pb-2 fs-5" for="lastName">Last Name</label>
-          <input type="text" [value]="smartPerson.last_name" class="form-control fs-5" id="lastName" autocomplete="off"
+          <input type="text" class="form-control fs-5" id="lastName" autocomplete="off"
                  formControlName="lastName" placeholder="Type in the last name" aria-label="Username" aria-describedby="basic-addon1">
         </div>
       </div>
       <div class="form-group col-12">
         <label class="control-label pb-2 fs-5" for="email">E-mail</label>
-        <input required="required" [value]="smartPerson.email" type="text" class="form-control fs-5" id="email" autocomplete="off"
+        <input required="required" type="text" class="form-control fs-5" id="email" autocomplete="off"
                formControlName="email" placeholder="Type in the email" aria-label="Username" aria-describedby="basic-addon1">
       </div>
     </form>
   </div>
   <div class="modal-footer border-0">
-    <button type="button" role="button" class="btn custom_button_light text-white" data-bs-dismiss="modal" (click)="modal.dismiss('close button click')">Close</button>
+    <button type="button" role="button" class="btn custom_button_light text-white" data-bs-dismiss="modal" (click)="modal.dismiss()">Close</button>
     <button type="button" role="button" class="btn custom_button_dark text-white" data-bs-dismiss="modal"
-            (click)="editPerson(smartPerson)" [disabled]="!userFormGroup.valid">Save</button>
+            (click)="editUser(smartUser)" [disabled]="!userFormGroup.valid">Save</button>
   </div>
 </ng-template>
 

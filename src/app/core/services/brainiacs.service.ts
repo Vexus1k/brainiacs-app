@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from "rxjs";
 import { HttpClient } from "@angular/common/http";
-import { readDataFromObject, User } from '../models/global-interfaces';
+import {User, readDataFromObject} from '../models/global-interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,10 @@ import { readDataFromObject, User } from '../models/global-interfaces';
 export class BrainiacsService {
   urlApi: string = "https://reqres.in/api"
   constructor(private http: HttpClient) { }
+
+  addPersonToList(user: User){
+    return this.http.post(this.urlApi + '/users/', user)
+  }
 
   removePersonFromList(id: number) {
     return this.http.delete(this.urlApi + '/users/' + id)

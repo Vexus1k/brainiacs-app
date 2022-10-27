@@ -12,9 +12,9 @@ import { NgbModal, NgbModalRef } from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./list-record.component.scss']
 })
 export class ListRecordComponent implements OnInit {
-  @Input() smartPerson!: User;
-  @Output() removePersonEvent = new EventEmitter();
-  @Output() editPersonEvent = new EventEmitter();
+  @Input() smartUser!: User;
+  @Output() removeUserEvent = new EventEmitter();
+  @Output() editUserEvent = new EventEmitter();
   faTrashCan: IconDefinition = faTrashCan;
   faPenToSquare: IconDefinition = faPenToSquare;
   userFormGroup!: FormGroup;
@@ -34,18 +34,18 @@ export class ListRecordComponent implements OnInit {
     this.modalRef = this.modalService.open(content)
   }
 
-  removePerson(id: number) {
+  removeUser(id: number) {
     this.brainiacsService.removePersonFromList(id).subscribe(
       (res) => { console.log("Success Response " + res)},
       (err) => { console.log("Error happened" + err); alert('Something went wrong try again later')},
       () => {
-        this.removePersonEvent.emit(id)
+        this.removeUserEvent.emit(id)
         this.modalRef.close();
       }
     );
   }
 
-  editPerson(user: User) {
+  editUser(user: User) {
     this.brainiacsService.editPersonFromList(user).subscribe(
       (res) => { console.log("Success Response " + res) },
       (err) => { console.log("Error happened" + err); alert('Something went wrong try again later') },
@@ -53,7 +53,7 @@ export class ListRecordComponent implements OnInit {
         user.first_name = this.userFormGroup.controls['firstName'].value
         user.last_name = this.userFormGroup.controls['lastName'].value
         user.email = this.userFormGroup.controls['email'].value
-        this.editPersonEvent.emit(user);
+        this.editUserEvent.emit(user);
         this.modalRef.close();
       }
     );
