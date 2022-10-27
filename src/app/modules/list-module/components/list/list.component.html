@@ -1,0 +1,25 @@
+<div class="d-flex justify-content-between align-items-end pb-4">
+  <div class="d-flex">
+    <fa-icon [icon]="faUserGroup" [size]="'2xl'" class="pe-3"></fa-icon>
+    <h3 class="mb-0">List of smart guys</h3>
+  </div>
+
+  <button type="button" class="btn btn-primary btn-sm custom_button border-0"><fa-icon [icon]="faPlus" class="pe-2"></fa-icon>Add brainiac</button>
+</div>
+<div class="col-12"></div>
+<table class="table">
+  <thead class="table-custom border-0 text-white p-3 lh-lg">
+    <tr class="flex-d align- text-left">
+      <th class="ps-3 col-1 fs-6" scope="col">Id</th>
+      <th class="col-2 fs-6" scope="col">First name</th>
+      <th class="col-2 fs-6" scope="col">Last name</th>
+      <th class="col-2 fs-6" scope="col">E-mail</th>
+      <th class="col-5" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let smartPerson of smartPeopleList" app-list-record [smartPerson]="smartPerson"
+        (removePersonEvent)="removePerson($event)" (editPersonEvent)="editPerson($event)">
+    </tr>
+  </tbody>
+</table>
